@@ -1,0 +1,66 @@
+﻿@model AlbumModel
+
+@{
+    ViewData["Title"] = "Album Details";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<div>
+    <h4>Album</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.UnitePriceText)
+        </dt>
+        <dd class="col-sm-10">
+            ₺@Html.DisplayFor(model => model.UnitePriceText)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.StockAmount)
+        </dt>  
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.StockAmount)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.YearText)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.YearText)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.NumberofDiscs)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.NumberofDiscs)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Singer)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Singer.Name)
+        </dd>
+        @*<dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Guid)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Guid)
+        </dd>*@
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+    <a asp-action="Index">Back to Album List</a>
+</div>

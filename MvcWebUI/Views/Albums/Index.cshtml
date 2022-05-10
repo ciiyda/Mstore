@@ -1,0 +1,115 @@
+﻿@model IEnumerable<AlbumModel>
+
+@{
+    ViewBag.Title = "Album List";
+}
+
+<p>
+    <a asp-action="Create">Create Album</a>
+
+</p>
+
+<table id="albums" class="display" style="width:100%">
+    >
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UnitePriceText)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StockAmount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.YearText)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NumberofDiscs)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Singer.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Singer.SurName)
+            </th>
+            <th>
+
+            </th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var album in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(model => album.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => album.Description)
+                </td>
+                <td>
+                    ₺@Html.DisplayFor(model => album.UnitePriceText)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => album.StockAmount)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => album.YearText)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => album.NumberofDiscs)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => album.Singer.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => album.Singer.SurName)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-controller="Albums" asp-route-id="@album.Id">Edit</a> |
+                    <a asp-action="Details" asp-controller="Albums" asp-route-id="@album.Id">Details</a>|
+                    <a href="#" onclick="deleteRecord(@album.Id);">Delete</a>
+
+                </td>
+
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section Scripts {
+
+    <link href="~/lib/datatables/css/jquery.dataTables.min.css" rel="stylesheet" />
+
+    <script src="~/lib/datatables/js/jquery.dataTables.min.js"></script>
+
+    <link href="~/lib/AlertifyJS/css/alertify.min.css" rel="stylesheet" />
+    <script src="~/lib/AlertifyJS/alertify.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('#albums').DataTable();
+        });
+    </script>
+    <script>
+        function deleteRecord(id) {
+            alertify.confirm("Delete Album", "Are you sure you want to delete this album?",
+                function () {
+                    window.location.href = "/Albums/Delete/" + id;
+                },
+                function () {
+
+                }).set({
+                labels: { ok: 'Yes', cancel: 'No' }
+            });
+        }
+           
+
+    </script>
+}
